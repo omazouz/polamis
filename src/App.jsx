@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import {Button, Checkbox} from '@material-ui/core';
 
 function App() {
