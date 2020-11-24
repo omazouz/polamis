@@ -16,8 +16,8 @@ import Container from '@material-ui/core/Container'
 function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
-			{'Copyright © '}
-			Polamis {new Date().getFullYear()}
+			{'Copyright © Polamis'}
+			{new Date().getFullYear()}
 			{'.'}
 		</Typography>
 	)
