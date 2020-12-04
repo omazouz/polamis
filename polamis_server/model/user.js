@@ -1,6 +1,6 @@
 const mongoose = require('./db.js');
 
-let userID = 100;
+
 //define Schema
 
 let UserSchema = mongoose.Schema({
@@ -11,7 +11,6 @@ let UserSchema = mongoose.Schema({
     },
     userID:{
         type:Number,
-        default:userID,
         unique:true
     },
     password:String,
