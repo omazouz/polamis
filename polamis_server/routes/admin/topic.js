@@ -18,7 +18,11 @@ router.post('/addTopic',async (req,res)=>{
 
 
     let bigggestTopic = await Topic.find().sort({topicID:-1}).skip(0).limit(1).exec();
-    let biggestID = bigggestTopic[0].topicID;
+    let biggestID = 0;
+    if (bigggestTopic.length != 0){
+        biggestID = bigggestTopic[0].topicID;
+    }
+
     var newtopic = new Topic({
         topicname : req.body.topicname,
         topicID : biggestID+1,

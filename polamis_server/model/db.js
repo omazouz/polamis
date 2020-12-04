@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 
-const DB_URL = 'mongodb://localhost:27017/pfe'
+//const DB_URL = 'mongodb://localhost:27017/pfe'
+
+const DB_URL = 'mongodb+srv://tianyang:polytech@pfe.kvbyc.mongodb.net/pfe?retryWrites=true&w=majority'
 
 //mongodb connection
 mongoose.connect(DB_URL, {

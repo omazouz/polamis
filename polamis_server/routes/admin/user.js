@@ -26,7 +26,12 @@ router.post('/addUser',async (req,res)=>{
 
 
     let bigggestUser = await User.find().sort({userID:-1}).skip(0).limit(1).exec();
-    let biggestID = bigggestUser[0].userID;
+
+    let biggestID = 0;
+    if (bigggestUser.length != 0){
+        biggestID = bigggestTopic[0].topicID;
+    }
+
     var newuser = new User({
 
     username : req.body.username,
