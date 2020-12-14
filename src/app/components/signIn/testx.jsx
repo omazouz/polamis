@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Drawer from '@material-ui/core/Drawer'
@@ -7,19 +8,16 @@ import IconButton from '@material-ui/core/IconButton'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import Grid from '@material-ui/core/Grid'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import MailIcon from '@material-ui/icons/Mail'
 import MenuIcon from '@material-ui/icons/Menu'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Post from './Post'
 import Message from './Message'
-import SendEmail from './SendEmail'
-import SendIcon from '@material-ui/icons/Send'
 
 const drawerWidth = 240
 const posts = ['1', '2', '3']
@@ -58,22 +56,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function ResponsiveDrawer(props) {
-	const [send, setSend] = useState(false)
 	const { window } = props
 	const classes = useStyles()
 	const theme = useTheme()
 	const [mobileOpen, setMobileOpen] = React.useState(false)
 	const history = useHistory()
-	const location = useLocation()
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen)
-	}
-	const handleClick = (index) => {
-		return index === 1
-			? history.push('/sent')
-			: index === 0
-			? setSend(true)
-			: history.push('/test')
 	}
 
 	const drawer = (
@@ -81,16 +70,10 @@ function ResponsiveDrawer(props) {
 			<div className={classes.toolbar} />
 
 			<List>
-				{['new text', 'Inbox', 'Send email'].map((text, index) => (
-					<ListItem button onClick={() => handleClick(index)} key={text}>
-						<ListItemIcon key={text}>
-							{index === 0 ? (
-								<SendIcon />
-							) : index === 1 ? (
-								<InboxIcon />
-							) : (
-								<MailIcon />
-							)}
+				{['Inbox', 'Send email'].map((text, index) => (
+					<ListItem button key={text}>
+						<ListItemIcon>
+							{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
 						</ListItemIcon>
 						<ListItemText primary={text} />
 					</ListItem>
@@ -103,7 +86,7 @@ function ResponsiveDrawer(props) {
 		window !== undefined ? () => window().document.body : undefined
 
 	return (
-		<Grid item className={classes.root}>
+		<div className={classes.root}>
 			<CssBaseline />
 			<AppBar position="fixed" className={classes.appBar}>
 				<Toolbar>
@@ -152,22 +135,14 @@ function ResponsiveDrawer(props) {
 					</Drawer>
 				</Hidden>
 			</nav>
-			<Grid>
+			<main>
 				<div className={classes.toolbar} />
-				{location.pathname === '/sent' ? (
-					posts.map((post) => <Post id={post} posts={post} />)
-				) : (
-					<Message />
-				)}
-				{send ? (
-					<Grid container xs={12} md={6} sm={12}>
-						<SendEmail setSend={() => setSend()} />
-					</Grid>
-				) : (
-					<></>
-				)}
-			</Grid>
-		</Grid>
+				{/* {posts.map((post) => (
+					<Post id={post} posts={post} />
+				))} */}
+				<Message />
+			</main>
+		</div>
 	)
 }
 
