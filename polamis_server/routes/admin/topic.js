@@ -29,12 +29,15 @@ router.post('/addTopic',async (req,res)=>{
         messagesID : req.body.messagesID,
     })
 
+
+
     newtopic.save(function (err) {
         if(err){
             console.log(err);
             return;
         }
         console.log("add topic success");
+
         res.send('Add topic Success');
     });
 

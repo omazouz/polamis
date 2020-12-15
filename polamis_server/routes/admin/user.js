@@ -29,7 +29,7 @@ router.post('/addUser',async (req,res)=>{
 
     let biggestID = 0;
     if (bigggestUser.length != 0){
-        biggestID = bigggestTopic[0].topicID;
+        biggestID = bigggestUser[0].userID;
     }
 
     var newuser = new User({
@@ -50,8 +50,11 @@ router.post('/addUser',async (req,res)=>{
             console.log(err);
             return;
         }
-        console.log("add user success");
-        res.send('Add User Success');
+        console.log("Add User Success");
+        res.status(200).json({
+            status:200,
+            res_msg:"Add User Success!"
+        });
     });
 
 })
