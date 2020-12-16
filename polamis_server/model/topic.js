@@ -5,7 +5,7 @@ const mongoose = require('./db.js');
 
 let TopicSchema = mongoose.Schema({
 
-    topicname:{
+    topicName:{
         type:String,
 
     },
@@ -13,8 +13,8 @@ let TopicSchema = mongoose.Schema({
         type:Number,
         unique:true
     },
-    messagesID:{
-        type:Array
+    origin_message:{
+        type:String
     }
 
 },{versionKey:false}); //delete _v  version key

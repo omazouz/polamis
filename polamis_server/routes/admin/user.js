@@ -34,7 +34,7 @@ router.post('/addUser',async (req,res)=>{
 
     var newuser = new User({
 
-    username : req.body.username,
+    userName : req.body.userName,
     userID : biggestID+1,
     password : req.body.password,
     age : req.body.age,

@@ -5,10 +5,12 @@ const Topic = require('../model/topic');
 const Forward = require('../model/forward');
 
 
-router.get('/receiveMessage', async function(req, res, next) {
-    let receiverID = req.query.userID;
+router.get('/receiveMessage/:userID', async function(req, res, next) {
+    let receiverID = req.params.userID;
 
-    let receiveForward = await Forward.find({receiverID:receiverID}).sort({receiverID:-1}).exec();
+    let receiveForward;
+
+    receiveForward = await Forward.find({receiverID:receiverID}).sort({receiverID:-1}).exec();
 
     if(receiveForward.length == 0){
         res.status(404).json({
@@ -18,23 +20,38 @@ router.get('/receiveMessage', async function(req, res, next) {
         return;
     }
 
-    let receiveMessage = [];
+
 
     let lastindex = 0;
+    let messageArray = [];
 
-    for(let i=0; i<receiveForward.length;i++){
-        if(receiveForward[i].messageID != lastindex){
-            lastindex = receiveForward[i].messageID;
-            let message = await Message.find({messageID:lastindex}).exec();
-            receiveMessage.push(message[0].text);
+
+    if(req.query.topicID != undefined){
+        for(let i=0; i<receiveForward.length;i++){
+            if(receiveForward[i].messageID != lastindex){
+                lastindex = receiveForward[i].messageID;
+                let message = await Message.find({messageID:lastindex,topicID:req.query.topicID}).exec();
+                if(message.length != 0) {
+                    messageArray.push(message);
+                }
+            }
+        }
+    }
+    else{
+        for(let i=0; i<receiveForward.length;i++){
+            if(receiveForward[i].messageID != lastindex){
+                lastindex = receiveForward[i].messageID;
+                let message = await Message.find({messageID:lastindex}).exec();
+                messageArray.push(message);
+            }
         }
     }
 
-    console.log("Get Message Success");
+    console.log("Receive Message Success");
     res.status(200).json({
         status:200,
-        res_msg:"Get Message Success!",
-        data:receiveMessage
+        res_msg:"Receive Message Success!",
+        data:messageArray
     })
     return;
 
@@ -55,7 +72,7 @@ router.post('/addMessage',async (req,res)=>{
         biggestID = bigggestMessage[0].messageID;
     }
 
-    let findtopicID = await Topic.find({topicname:req.body.topicname}).exec();
+    let findtopicID = await Topic.find({topicName:req.body.topicName}).exec();
 
     if(findtopicID.length == 0){
         res.status(400).json({
@@ -71,6 +88,7 @@ router.post('/addMessage',async (req,res)=>{
 
         messageID : biggestID+1,
         topicID : topicID,
+        topicName : req.body.topicName,
         text : req.body.text,
 
 

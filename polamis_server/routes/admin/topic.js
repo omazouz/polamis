@@ -24,9 +24,9 @@ router.post('/addTopic',async (req,res)=>{
     }
 
     var newtopic = new Topic({
-        topicname : req.body.topicname,
+        topicName : req.body.topicName,
         topicID : biggestID+1,
-        messagesID : req.body.messagesID,
+        origin_message: req.body.origin_message,
     })
 
 
@@ -36,9 +36,12 @@ router.post('/addTopic',async (req,res)=>{
             console.log(err);
             return;
         }
-        console.log("add topic success");
+        console.log("Add Topic Success");
 
-        res.send('Add topic Success');
+        res.status(200).json({
+            status:200,
+            res_msg:"Add topic Success!"
+        });
     });
 
 })

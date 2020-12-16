@@ -10,6 +10,7 @@ let MessageSchema = mongoose.Schema({
         unique:true
     },
     topicID:Number,
+    topicName:String,
     text:String,
     misinformation_level:{
         type:Number,

@@ -12,7 +12,7 @@ router.post('/doLogin',async (req,res)=>{
 
     let userResult = await User.findOne({username:req.body.username}).exec();
 
-    console.log(userResult);
+    // console.log(userResult);
     if(userResult != undefined) {
 
         if (req.body.password == userResult.password) {
@@ -21,7 +21,8 @@ router.post('/doLogin',async (req,res)=>{
             res.status(200).json({
                 status: 200,
                 res_msg: "Login Successfully!",
-                token: token
+                token: token,
+                userID: userResult.userID
 
             });
         } else{
