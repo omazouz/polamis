@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import SignUp from './app/components/signIn/SignUp'
+import Router from './app/components/Router'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<SignUp />
+		<Router />
 	</React.StrictMode>,
 	document.getElementById('root'),
 )

@@ -1,17 +1,14 @@
-import {Button, Checkbox} from '@material-ui/core';
+import { Button, Checkbox } from '@material-ui/core'
 
 function App() {
-  return (
-    <>
-    <Button variant="contained" color="primary">
-      Hello Worldd
-    </Button>
-    <Checkbox
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' }}
-/>
-    </>
-  );
+	return (
+		<>
+			<Button variant="contained" color="primary">
+				Hello Worldd
+			</Button>
+			<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />
+		</>
+	)
 }
 
-export default App;
+export default App

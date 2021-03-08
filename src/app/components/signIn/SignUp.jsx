@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { useFormik } from 'formik'
+import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar'
+
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
@@ -73,6 +76,52 @@ export default function SignUp() {
 	const handleChange = (event) => {
 		setGender(event.target.value)
 	}
+	const formik = useFormik({
+		initialValues: {
+			firstName: '',
+			lastName: '',
+			userName: '',
+			passWord: '',
+			birthDay: '',
+			gender: '',
+			city: '',
+			country: '',
+			nationality: '',
+		},
+		onSubmit: (values, { resetForm, setSubmitting }) => {
+			const {
+				firstName,
+				lastName,
+				userName,
+				passWord,
+				birthDay,
+				gender,
+				city,
+				country,
+				nationality,
+			} = values
+			axios
+				.post('http://localhost:5000/admin/user/addUser', {
+					firstName,
+					lastName,
+					userName,
+					passWord,
+					birthDay,
+					gender,
+					city,
+					country,
+					nationality,
+				})
+				.then(() => {
+					console.log('Post successful!')
+				})
+				.catch((err) => {
+					console.log(err)
+				})
+			resetForm()
+			setSubmitting(false)
+		},
+	})
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
@@ -83,7 +132,11 @@ export default function SignUp() {
 				<Typography component="h1" variant="h5">
 					Sign up
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form
+					className={classes.form}
+					onSubmit={formik.handleSubmit}
+					noValidate
+				>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
 							<FormControl component="fieldset">
@@ -92,8 +145,8 @@ export default function SignUp() {
 									className={classes.radioGrp}
 									aria-label="gender"
 									name="gender"
-									value={gender}
-									onChange={handleChange}
+									onChange={formik.handleChange}
+									value={formik.values.gender}
 								>
 									<FormControlLabel
 										value="female"
@@ -117,6 +170,8 @@ export default function SignUp() {
 								fullWidth
 								id="firstName"
 								label="First Name"
+								onChange={formik.handleChange}
+								value={formik.values.firstName}
 								autoFocus
 							/>
 						</Grid>
@@ -129,18 +184,23 @@ export default function SignUp() {
 								label="Last Name"
 								name="lastName"
 								autoComplete="lname"
+								onChange={formik.handleChange}
+								value={formik.values.lastName}
 							/>
 						</Grid>
 
 						<Grid item xs={12} sm={6}>
 							<TextField
-								id="date"
+								id="birthDay"
 								label="Birthday*"
+								name="birthDay"
 								type="date"
 								defaultValue="2017-05-24"
 								InputLabelProps={{
 									shrink: true,
 								}}
+								onChange={formik.handleChange}
+								value={formik.values.birthDay}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={6}>
@@ -176,10 +236,12 @@ export default function SignUp() {
 								variant="outlined"
 								required
 								fullWidth
-								id="City"
-								label="City"
-								name="City"
+								id="city"
+								label="city"
+								name="city"
 								autoComplete="city"
+								onChange={formik.handleChange}
+								value={formik.values.city}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={6}>
@@ -216,10 +278,12 @@ export default function SignUp() {
 								variant="outlined"
 								required
 								fullWidth
-								id="email"
+								id="userName"
 								label="Email Address"
-								name="email"
+								name="userName"
 								autoComplete="email"
+								onChange={formik.handleChange}
+								value={formik.values.userName}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -227,11 +291,13 @@ export default function SignUp() {
 								variant="outlined"
 								required
 								fullWidth
-								name="password"
+								name="passWord"
 								label="Password"
 								type="password"
-								id="password"
+								id="passWord"
 								autoComplete="current-password"
+								onChange={formik.handleChange}
+								value={formik.values.passWord}
 							/>
 						</Grid>
 					</Grid>
