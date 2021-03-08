@@ -22,7 +22,7 @@ import SendEmail from './SendEmail'
 import SendIcon from '@material-ui/icons/Send'
 
 const drawerWidth = 240
-const posts = ['1', '2', '3']
+const posts = ['Topic Name']
 
 const useStyles = makeStyles((theme) => ({
 	root: {

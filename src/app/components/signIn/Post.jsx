@@ -24,7 +24,7 @@ export default function Post({ id, posts }) {
 						{posts}
 					</Typography>
 					<Typography variant="body3" color="textSecondary" component="p">
-						{id}
+						'From John doe'
 					</Typography>
 					<Typography variant="body2" color="textSecondary" component="p">
 						This CardContent is wrapped in a CardActionsArea, so this text and
