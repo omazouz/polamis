@@ -42,29 +42,15 @@ const MessageText = ({ className, ...rest }) => {
 					<Divider />
 					<CardContent style={{ maxHeight: 400, overflow: 'auto' }}>
 						<Typography variant="p" className={classes.text}>
-							textdkkkkkkkkkkkkkkkkkkkk ,,,,,,,,,,,,,, ddddddddddddddd
-							dddddddddddddddd dddddddddddddddd ddddddddddddddddd ddddddddddddd
-							ddddddddddd ddddddd textdkkkkkkkkkkkkkkkkkkkk ,,,,,,,,,,,,,,
-							ddddddddddddddd dddddddddddddddd dddddddddddddddd
-							ddddddddddddddddd ddddddddddddd ddddddddddd ddddddd
-							textdkkkkkkkkkkkkkkkkkkkk ,,,,,,,,,,,,,, ddddddddddddddd
-							dddddddddddddddd dddddddddddddddd dddddddddddddddd
-							dddddddddddddddddddddddddddddddddddddddddddddddd dddddddddddddddd
-							dddddddddddddddd dddddddddddddddd dddddddddddddddd
-							ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-							ddddddddddddd ddddddddddd ddddddd textdkkkkkkkkkkkkkkkkkkkk
-							,,,,,,,,,,,,,, ddddddddddddddd dddddddddddddddd dddddddddddddddd
-							ddddddddddddddddd ddddddddddddd ddddddddddd ddddddd
-							textdkkkkkkkkkkkkkkkkkkkk ,,,,,,,,,,,,,, ddddddddddddddd
-							dddddddddddddddd dddddddddddddddd ddddddddddddddddd ddddddddddddd
-							ddddddddddd ddddddd textdkkkkkkkkkkkkkkkkkkkk ,,,,,,,,,,,,,,
-							ddddddddddddddd dddddddddddddddd dddddddddddddddd
-							ddddddddddddddddd ddddddddddddd ddddddddddd ddddddd
-							textdkkkkkkkkkkkkkkkkkkkk ,,,,,,,,,,,,,, ddddddddddddddd
-							dddddddddddddddd dddddddddddddddd ddddddddddddddddd ddddddddddddd
-							ddddddddddd dddddddffffffffffff ffffffffffffffffffff fffffffffffff
-							f f f f f f fddddddddddddddddddddddddddddddddddddddddddddddddddwww
-							dddddddd f f f f
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+							risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec,
+							ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula
+							massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci
+							nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl
+							sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae,
+							consequat in, pretium a, enim. Pellentesque congue. Ut in risus
+							volutpat libero pharetra tempor. Cras vestibulum bibendum augue.
+							Praesent egestas leo in pede. Praesent blandit odio eu enim
 						</Typography>
 					</CardContent>
 				</Card>
